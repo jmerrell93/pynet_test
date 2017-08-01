@@ -22,14 +22,14 @@ def connect_and_query(ip_address):
     time.sleep(1)
     output = remote_conn.read_very_eager()
     print output
-    snmp_query('1.3.6.1.2.1.1.1.0')
-    snmp_query('1.3.6.1.2.1.1.5.0')
+    snmp_query('1.3.6.1.2.1.1.1.0', ip_address)
+    snmp_query('1.3.6.1.2.1.1.5.0', ip_address)
 
-def snmp_query(OID):
+def snmp_query(OID, ip_address):
     device = (ip_address, COMMUNITY, SNMP_PORT)
     snmp_get = snmp_get_oid(device, OID)
     output = snmp_extract(snmp_get)
-    print "FOR DEVICE %S" %ip_address
+    print "\nFOR DEVICE %s" %ip_address
     print OID_NAME[OID]
     print output + '\n'
 
